@@ -23,8 +23,8 @@ global without sharing class searchAccountAndContact {
                 + 'FROM Account WHERE ';
 
             List<String> conds = new List<String>();
-            if(phone != null && phone != ''){
-                conds.add('Phone = ' + '\'' + phone + '\')');
+            if(String.isNotBlank(phone)){
+                conds.add('Phone = ' + '\'' + String.escapeSingleQuotes(phone) + '\'');
             }
             if((country == 'US' || country == 'CA') && address != null && address != '' && state != null && city != null && postalCode != null){
                 conds.add('(BillingStreet = ' + '\'' + address + '\'' + ' AND BillingState = ' + '\'' + state + '\'' + ' AND BillingCity = ' + '\'' + city + '\'' + ' AND BillingPostalCode LIKE ' + '\'' + postalCode + '\'' + ' AND BillingCountry = ' + '\'' + country + '\')') ;
@@ -39,8 +39,8 @@ global without sharing class searchAccountAndContact {
             if(country != 'US' && country != 'CA' && companyName != null){
                 conds.add('(Name LIKE ' + '\'' + companyName + '\'' + ' AND BillingCountry = ' + '\'' + country + '\')') ;
             }
-            if((country == 'US' || country == 'CA') && website != null && website != '' && postalCode != null){
-                conds.add('(Website = ' + '\'' + website + '\'' + ' AND BillingPostalCode LIKE :' + '\'' + postalCode + '\'' + ' AND BillingCountry = ' + '\'' + country + '\')') ;
+            if((country == 'US' || country == 'CA') && String.isNotBlank(website) && postalCode != null){
+                conds.add('(Website = ' + '\'' + String.escapeSingleQuotes(website) + '\'' + ' AND BillingPostalCode LIKE ' + '\'' + String.escapeSingleQuotes(postalCode) + '\'' + ' AND BillingCountry = ' + '\'' + country + '\')') ;
             }
             if(country != 'US' && country != 'CA' && website != null && website != ''){
                 conds.add('(Website = ' + '\'' + website + '\'' + ' AND BillingCountry = ' + '\'' + country + '\')') ;
