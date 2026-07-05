@@ -3,4 +3,5 @@ public class wrapperAccountAndContact {
     public Id conRec;
     public string currentCriteria;
     public string resultMessage;
+    // Interlynx to update the account and contact records
 }
