@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Distributor Selector">
+        <div class="slds-p-around_small">
+            <lightning-input type="checkbox" label="Filter by Lead Owner's Accounts" onchange={handleCheckboxChange}></lightning-input>
+
+            <template if:true={useLeadOwner}>
+                <lightning-combobox name="distributor" label="Choose Distributor" options={options} value={value} placeholder="Select a distributor" onchange={handleChange}></lightning-combobox>
+                <div class="slds-m-top_small">
+                    <lightning-button variant="brand" label="Save" onclick={handleSave} disabled={loading}></lightning-button>
+                </div>
+            </template>
+
+            <template if:false={useLeadOwner}>
+                <p>Select the checkbox to load distributors.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
